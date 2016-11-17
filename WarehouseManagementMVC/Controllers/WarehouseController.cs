@@ -16,7 +16,7 @@ namespace WarehouseManagementMVC.Controllers
         private StoreContext db = new StoreContext();
 
         // GET: Warehouse
-        public ActionResult Index(string sort, string search)
+        public ActionResult Index(string sort, string search, int? page)
         {
             var warhouse = new WarehouseData();
             var items = db.Items.Include(c => c.Categories);
@@ -34,7 +34,7 @@ namespace WarehouseManagementMVC.Controllers
                     break;
                 default:
                     items = items.OrderBy(i => i.Quantity);
-                    ViewBag.Sort = "q_asc";
+                    ViewBag.Sort = "q_desc";
                     break;
             }
 
@@ -43,8 +43,11 @@ namespace WarehouseManagementMVC.Controllers
                 items = items.Where(i => i.Name.ToLower().Contains(search.ToLower()));
                 ViewBag.Search = search;
             }
-            warhouse.Items = items.ToList();
-            StaticPagedList<Warehouse> warehousePaged = new StaticPagedList<Warehouse>(, 2,2,2);
+            int pageNumber = (page ?? 1);
+            warhouse.Items = items.ToPagedList(pageNumber,5);
+
+            ViewBag.ItemsPaged = warhouse.Items;
+            
             return View(warhouse);
         }
 

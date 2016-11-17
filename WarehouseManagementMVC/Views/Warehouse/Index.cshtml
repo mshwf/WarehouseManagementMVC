@@ -1,51 +1,56 @@
 ﻿@model WarehouseManagementMVC.ViewModels.WarehouseData
+@using PagedList;
+@using PagedList.Mvc;
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2 style="display:inline-block">Registered Branches | </h2> @Html.ActionLink("Add New Branch", "Create", controllerName: "Branch")
-@foreach (var branch in Model.Branches)
-{
-    <ul>
-        <li>@Html.ActionLink(branch.Location, "Details", "Branch", routeValues: new { id = branch.Id }, htmlAttributes: null)</li>
-    </ul>
-}
-<hr />
-<h2>All Items Available</h2>
-<div>
-    @using (@Html.BeginForm("Index", "Warehouse", FormMethod.Get))
-    {
-        <input type="text" name="search" value="@ViewBag.Search"/>
-        <input type="submit" value="Filter" />
+    @{
+        ViewBag.Title = "Index";
+        var paged = (IPagedList)ViewBag.ItemsPaged;
     }
-</div>
-<table class="table table-bordered">
-    <tr>
-        <th>Product</th>
-        <th>@Html.ActionLink("Quantity", "Index", new { sort = ViewBag.Sort, search = ViewBag.Search })</th>
-        <th>Categories</th>
-    </tr>
 
-    @foreach (var item in Model.Items)
+    <h2 style="display:inline-block">Registered Branches | </h2> @Html.ActionLink("Add New Branch", "Create", controllerName: "Branch")
+    @foreach (var branch in Model.Branches)
     {
+        <ul>
+            <li>@Html.ActionLink(branch.Location, "Details", "Branch", routeValues: new { id = branch.Id }, htmlAttributes: null)</li>
+        </ul>
+    }
+    <hr />
+    <h2>All Items Available</h2>
+    <div style="margin:5px">
+        @using (@Html.BeginForm("Index", "Warehouse", FormMethod.Get))
+        {
+            <input type="text" name="search" value="@ViewBag.Search" class="form-control" style="display:inline-block" />
+            <input type="submit" value="Filter" class="btn btn-primary" />
+        }
+    </div>
+    <table class="table table-bordered">
         <tr>
-            <td>
-
-                @Html.ActionLink(item.Name, "Details", "Item", routeValues: new { id = item.Id }, htmlAttributes: null)
-
-
-            </td>
-            <td>
-                <span>@item.Quantity</span>
-            </td>
-            <td>
-                @{foreach (var cat in item.Categories)
-                    {
-                        @cat.Name <br />
-                    }
-                }
-            </td>
+            <th>Product</th>
+            <th>@Html.ActionLink("Quantity", "Index", new { sort = ViewBag.Sort, search = ViewBag.Search })</th>
+            <th>Categories</th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+
+                    @Html.ActionLink(item.Name, "Details", "Item", routeValues: new { id = item.Id }, htmlAttributes: null)
+
+
+                </td>
+                <td>
+                    <span>@item.Quantity</span>
+                </td>
+                <td>
+                    @{foreach (var cat in item.Categories)
+                        {
+                            @cat.Name <br />
+                        }
+                    }
+                </td>
+            </tr>
+                        }
+    </table>
+    Page @paged.PageNumber  of @paged.PageCount
+    @Html.PagedListPager(paged, page => Url.Action("Index", new { page, search = ViewBag.Search }))
