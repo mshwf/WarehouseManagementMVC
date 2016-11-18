@@ -36,6 +36,26 @@ namespace WarehouseManagementMVC.Controllers
             return View(branch);
         }
 
+        public ActionResult AddBranchItems(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Branch branch = db.Branches.Include(i => i.Items).Where(b => b.Id == id).Single();
+            if (branch == null)
+            {
+                return HttpNotFound();
+            }
+            PopulateAvailableItems(branch);
+            return View(branch);
+        }
+
+        private void PopulateAvailableItems(Branch branch)
+        {
+            
+        }
+
         // GET: Branch/Create
         public ActionResult Create()
         {

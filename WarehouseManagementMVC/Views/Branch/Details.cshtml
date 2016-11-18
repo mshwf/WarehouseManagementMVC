@@ -1,24 +1,50 @@
 ﻿@model WarehouseManagementMVC.Models.Branch
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Location;
 }
+<h1>@Model.Location Branch</h1>
 
-<h2>Details</h2>
 
 <div>
-    <h4>Branch</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+    <h3>Items available in the branch</h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+    <table class="table table-bordered">
+        <tr>
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Discount</th>
+        </tr>
+        @{
+            if (Model.BItems == null)
+            {
+                <tr>
+                 
+                        Currently no items added.
+                        <a href="@Url.Action("AddBranchItems", "Branch", routeValues:new {id=Model.Id })" class="btn btn-default">
+                            Add
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        </a>
+                    
+                </tr>
 
-    </dl>
+            }
+            else
+            {
+                foreach (var item in Model.BItems)
+                {
+                    <tr>
+                        <td>@item.Item.Name</td>
+                        <td>@item.Item.Price</td>
+                        <td>@item.Item.Quantity</td>
+                        <td>@item.DiscountPercentage</td>
+                    </tr>
+                }
+            } }
+    </table>
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

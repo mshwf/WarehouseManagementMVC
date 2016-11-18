@@ -15,7 +15,7 @@ namespace WarehouseManagementMVC.DAL
 
             var branches = new List<Branch>
             {
-                new Branch { Location="Shobra"},
+                new Branch { Location="Shubra"},
                 new Branch { Location="Dokki"},
                 new Branch { Location="6th October"},
                 new Branch { Location="5th Settlement"},

@@ -44,10 +44,10 @@ namespace WarehouseManagementMVC.Controllers
                 ViewBag.Search = search;
             }
             int pageNumber = (page ?? 1);
-            warhouse.Items = items.ToPagedList(pageNumber,5);
+            warhouse.Items = items.ToPagedList(pageNumber, 5);
 
             ViewBag.ItemsPaged = warhouse.Items;
-            
+
             return View(warhouse);
         }
 

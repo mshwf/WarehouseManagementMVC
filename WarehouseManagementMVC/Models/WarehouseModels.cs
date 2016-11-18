@@ -16,7 +16,7 @@ namespace WarehouseManagementMVC.Models
     {
         public int Id { get; set; }
         public string Location { get; set; }
-        public ICollection<BranchItem> BItems { get; set; }
+        public ICollection<Item> Items { get; set; }
     }
    
     public class Item
@@ -32,18 +32,11 @@ namespace WarehouseManagementMVC.Models
         public int Quantity { get; set; }
         [Required]
         public decimal Price { get; set; }
-        public ICollection<Category> Categories { get; set; }
-    }
 
-    public class BranchItem
-    {
-        public int Id { get; set; }
-        public int ItemId { get; set; }
-        public int BranchId { get; set; }
-        public Branch Branch { get; set; }
-        public Item Item { get; set; }
         [Range(0, 100), Display(Name = "Discount Percentage"), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Enter only numeric number")]
         public double? DiscountPercentage { get; set; } = 0;
+
+        public ICollection<Category> Categories { get; set; }
         public ICollection<Order> Orders { get; set; }
 
     }

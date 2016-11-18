@@ -1,0 +1,24 @@
+﻿@model WarehouseManagementMVC.Models.Branch
+@{
+    ViewBag.Title = "AddBranchItem";
+}
+
+<h2>Add Branch Item</h2>
+@using (Html.BeginForm())
+{
+<table class="table table-bordered">
+    <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+    </tr>
+    @{List<WarehouseManagementMVC.ViewModels.BranchItems> itemsIn = ViewBag.ItemsInBranch;}
+    @foreach (var item in itemsIn)
+    {
+        <tr>
+            <td><input type="checkbox" name="selectedItems" value="@item.ItemId" @Html.Raw(item.Assigned?"checked":"") /></td>
+            @*<td>@item.Quantity</td>*@
+        </tr>
+        }
+</table>
+
+}
