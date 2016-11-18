@@ -258,9 +258,9 @@
     <Compile Include="Migrations\201611181655183_InheritanceImplemented.Designer.cs">
       <DependentUpon>201611181655183_InheritanceImplemented.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611182156457_uniqueIndex.cs" />
-    <Compile Include="Migrations\201611182156457_uniqueIndex.Designer.cs">
-      <DependentUpon>201611182156457_uniqueIndex.cs</DependentUpon>
+    <Compile Include="Migrations\201611182235127_fxkeys.cs" />
+    <Compile Include="Migrations\201611182235127_fxkeys.Designer.cs">
+      <DependentUpon>201611182235127_fxkeys.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -401,8 +401,8 @@
     <EmbeddedResource Include="Migrations\201611181655183_InheritanceImplemented.resx">
       <DependentUpon>201611181655183_InheritanceImplemented.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611182156457_uniqueIndex.resx">
-      <DependentUpon>201611182156457_uniqueIndex.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611182235127_fxkeys.resx">
+      <DependentUpon>201611182235127_fxkeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

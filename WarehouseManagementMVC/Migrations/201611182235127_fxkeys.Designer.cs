@@ -7,13 +7,13 @@ namespace WarehouseManagementMVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class uniqueIndex : IMigrationMetadata
+    public sealed partial class fxkeys : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(uniqueIndex));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fxkeys));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611182156457_uniqueIndex"; }
+            get { return "201611182235127_fxkeys"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,16 +3,16 @@ namespace WarehouseManagementMVC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class uniqueIndex : DbMigration
+    public partial class fxkeys : DbMigration
     {
         public override void Up()
         {
-            CreateIndex("dbo.WItems", "Name", unique: true, name: "IX_FirstNameLastName");
+            AlterColumn("dbo.WItems", "Name", c => c.String());
         }
         
         public override void Down()
         {
-            DropIndex("dbo.WItems", "IX_FirstNameLastName");
+            AlterColumn("dbo.WItems", "Name", c => c.String(nullable: false));
         }
     }
 }
