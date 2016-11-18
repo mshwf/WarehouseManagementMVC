@@ -262,6 +262,10 @@
     <Compile Include="Migrations\201611182235127_fxkeys.Designer.cs">
       <DependentUpon>201611182235127_fxkeys.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611182251320_moveOrdrsProp.cs" />
+    <Compile Include="Migrations\201611182251320_moveOrdrsProp.Designer.cs">
+      <DependentUpon>201611182251320_moveOrdrsProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -403,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611182235127_fxkeys.resx">
       <DependentUpon>201611182235127_fxkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611182251320_moveOrdrsProp.resx">
+      <DependentUpon>201611182251320_moveOrdrsProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

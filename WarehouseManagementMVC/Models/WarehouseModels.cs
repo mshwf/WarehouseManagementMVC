@@ -38,16 +38,15 @@ namespace WarehouseManagementMVC.Models
         public int Quantity { get; set; }
         [Required]
         public decimal Price { get; set; }
-
-
         public ICollection<Category> Categories { get; set; }
-        public ICollection<Order> Orders { get; set; }
     }
     public class BItem : WItem //Branch Item
     {
         [Range(0, 100), Display(Name = "Discount Percentage"), RegularExpression(@"^(\d{0,2}(\.\d{1,2})?|100(\.00?)?)$", ErrorMessage = "Enter only numeric number")]
         public decimal DiscountPercentage { get; set; } = 0;
         public decimal NewPrice { get { return (Price - ((DiscountPercentage / 100) * Price)); } }
+        public ICollection<Order> Orders { get; set; }
+
     }
 
 
