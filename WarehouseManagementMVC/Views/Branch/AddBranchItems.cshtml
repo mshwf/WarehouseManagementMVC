@@ -6,21 +6,22 @@
 <h2>Add Items | @Model.Location</h2>
 @using (Html.BeginForm())
 {
+
     @Html.AntiForgeryToken()
     <table class="table table-bordered">
         <tr>
             <th>Items Available in the warehouse</th>
             <th>Quantity</th>
         </tr>
-        @{List<WarehouseManagementMVC.Models.Item> itemsIn = ViewBag.ItemsInBranch;}
+        @{List<WarehouseManagementMVC.Models.WItem> itemsIn = ViewBag.ItemsInBranch;}
         @foreach (var item in itemsIn)
         {
             <tr>
-                <td onclick="">
+                <td>
                     <input type="checkbox" onclick="document.getElementById('@item.Id').disabled = this.checked?false:true;" name="selectedItems" value="@item.Id" /> @item.Name
                 </td>
                 <td>
-                    <input disabled="disabled" type="number" pattern="[0-9]" id="@item.Id" class="form-control" style="display:inline-block; width:80px" name="qty" value="" /> <mark>@item.Quantity Maximum</mark>
+                    <input disabled="disabled" type="number" id="@item.Id" class="form-control" style="display:inline-block; width:80px" name="qty" value="" /> <mark>@item.Quantity Maximum</mark>
                 </td>
             </tr>
         }
@@ -33,7 +34,6 @@
                 </div>
             </td>
         </tr>
-
     </table>
 
             }

@@ -15,7 +15,7 @@
         </ul>
     }
     <hr />
-    <h2>All Items Available</h2>
+    <h2 style="display:inline-block">All Items Available | </h2> @Html.ActionLink("Add New Item", "Create", "Item")
     <div style="margin:5px">
         @using (@Html.BeginForm("Index", "Warehouse", FormMethod.Get))
         {

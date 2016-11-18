@@ -48,12 +48,12 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ItemsInBranch = db.Items.ToList();
+            ViewBag.ItemsInBranch = db.WItems.ToList();
             return View(branch);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddBranchItems(int? id, string[] selectedItems, int qty)
+        public ActionResult AddBranchItems(int? id, string[] selectedItems, int[] qty)
         {
             if (id == null)
             {
@@ -64,28 +64,34 @@ namespace WarehouseManagementMVC.Controllers
             return RedirectToAction("Details", new { id = id });
         }
 
-        private void UpdateBranchItems(Branch branchToUpdate, string[] selectedItems, int qty)
+        private void UpdateBranchItems(Branch branchToUpdate, string[] selectedItems, int[] qty)
         {
             if (selectedItems == null)
             {
-                branchToUpdate.Items = new List<Item>();
                 return;
             }
-
+            int j = 0;
             foreach (var item_id in selectedItems)
             {
                 int itemId = int.Parse(item_id);
-                var item = db.Items.Find(itemId);
-                if (branchToUpdate.Items.Select(i => i.Id == itemId).SingleOrDefault())
+                var witem = db.WItems.Include(c => c.Categories).FirstOrDefault(w => w.Id == itemId);
+                var iName = witem.Name;
+                var bitem = db.BItems.FirstOrDefault(d => d.Id == itemId);
+                if (witem.Name == "Dell T101")
                 {
-                    branchToUpdate.Items.Where(i => i.Id == itemId).Single().Quantity += qty;
+                    var b = branchToUpdate.Items.Where(i => i.Name == iName).FirstOrDefault();
+                    b.Quantity += qty[j];
+                    witem.Quantity -= qty[j];
+                    db.Entry(b).State = EntityState.Modified;
+                    db.Entry(witem).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
                 else
                 {
-                    //branchToUpdate.Items.Add();db.Items.Where(i => i.Id == itemId).Single().Name
-                    branchToUpdate.Items.Add(item);
+                    branchToUpdate.Items.Add(new BItem { Name = witem.Name, Categories = witem.Categories, Price = witem.Price, Quantity = qty[j] });
                     db.SaveChanges();
                 }
+                j++;
             }
         }
 

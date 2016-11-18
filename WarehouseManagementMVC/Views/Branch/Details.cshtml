@@ -8,12 +8,15 @@
 
 <div>
     <hr />
-    <h3>Items available in the branch</h3>
+    <h3>Items available in the branch</h3><a href="@Url.Action("AddBranchItems", "Branch", routeValues:new {id=Model.Id })" class="btn btn-default">
+    Add
+    <span class="glyphicon glyphicon-plus-sign"></span>
+</a>
 
     <table class="table table-bordered">
         <tr>
             <th>Item Name</th>
-            <th>Price</th>
+            <th>Price/Unit</th>
             <th>Quantity</th>
             <th>Discount</th>
         </tr>
@@ -22,10 +25,7 @@
             {
                 <tr>
                  <div style="margin:8px">
-                     Currently no items added. <a href="@Url.Action("AddBranchItems", "Branch", routeValues:new {id=Model.Id })" class="btn btn-default">
-                         Add
-                         <span class="glyphicon glyphicon-plus-sign"></span>
-                     </a>
+                     Currently no items added. 
                  </div>
                         
                     

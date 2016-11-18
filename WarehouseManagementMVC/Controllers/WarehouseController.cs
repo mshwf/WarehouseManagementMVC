@@ -19,7 +19,7 @@ namespace WarehouseManagementMVC.Controllers
         public ActionResult Index(string sort, string search, int? page)
         {
             var warhouse = new WarehouseData();
-            var items = db.Items.Include(c => c.Categories);
+            var items = db.WItems.Include(c => c.Categories);
             warhouse.Branches = db.Branches;
             ViewBag.Search = search;
             ViewBag.QSort = sort == "q_asc" ? "q_desc" : "q_asc";

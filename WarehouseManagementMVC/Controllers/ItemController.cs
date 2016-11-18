@@ -18,7 +18,7 @@ namespace WarehouseManagementMVC.Controllers
         // GET: Item
         public ActionResult Index()
         {
-            return View(db.Items.ToList());
+            return View(db.WItems.ToList());
         }
 
         // GET: Item/Details/5
@@ -28,7 +28,7 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            WItem item = db.WItems.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -47,11 +47,11 @@ namespace WarehouseManagementMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Quantity,Price,DiscountPercentage")] Item item)
+        public ActionResult Create([Bind(Include = "Id,Name,Quantity,Price,DiscountPercentage")] WItem item)
         {
             if (ModelState.IsValid)
             {
-                db.Items.Add(item);
+                db.WItems.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            WItem item = db.WItems.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace WarehouseManagementMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Quantity,Price,DiscountPercentage")] Item item)
+        public ActionResult Edit([Bind(Include = "Id,Name,Quantity,Price,DiscountPercentage")] WItem item)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            WItem item = db.WItems.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace WarehouseManagementMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Items.Find(id);
-            db.Items.Remove(item);
+            WItem item = db.WItems.Find(id);
+            db.WItems.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
