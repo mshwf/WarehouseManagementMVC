@@ -7,7 +7,7 @@ using WarehouseManagementMVC.Models;
 
 namespace WarehouseManagementMVC.DAL
 {
-    public class Initializer : DropCreateDatabaseIfModelChanges<StoreContext>
+    public class Initializer : DropCreateDatabaseAlways<StoreContext>
     {
         protected override void Seed(StoreContext context)
         {
