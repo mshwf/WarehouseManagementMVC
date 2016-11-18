@@ -33,7 +33,6 @@ namespace WarehouseManagementMVC.Models
         }
         public int Id { get; set; }
 
-        [Required, Index("IX_FirstNameLastName", 2, IsUnique = true)]
         public string Name { get; set; }
         [Required]
         public int Quantity { get; set; }
