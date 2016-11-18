@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseManagementMVC.DAL;
 using WarehouseManagementMVC.Models;
+using WarehouseManagementMVC.ViewModels;
 
 namespace WarehouseManagementMVC.Controllers
 {
@@ -47,13 +48,42 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return HttpNotFound();
             }
-            PopulateAvailableItems(branch);
+            ViewBag.ItemsInBranch = db.Items.ToList();
             return View(branch);
         }
-
-        private void PopulateAvailableItems(Branch branch)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddBranchItems(int? id, string[] selectedItems)
         {
-            
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var branchToUpdate = db.Branches.Include(i => i.Items).Where(d => d.Id == id).Single();
+            UpdateBranchItems(branchToUpdate, selectedItems);
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        private void UpdateBranchItems(Branch branchToUpdate, string[] selectedItems)
+        {
+            if (selectedItems == null)
+            {
+                branchToUpdate.Items = new List<Item>();
+                return;
+            }
+            var selectedItemsHS = new HashSet<string>(selectedItems);
+            var branchItems = new HashSet<int>(branchToUpdate.Items.Select(i => i.Id));
+            foreach (var item in db.Items)
+            {
+                if (selectedItemsHS.Contains(item.Id.ToString()))
+                {
+                    if (!branchItems.Contains(item.Id))
+                    {
+                        branchToUpdate.Items.Add(item);
+                    }
+                }
+
+            }
         }
 
         // GET: Branch/Create

@@ -9,6 +9,7 @@ namespace WarehouseManagementMVC.ViewModels
     {
         public int ItemId { get; set; }
         public string ItemName { get; set; }
-        public bool Assigned { get; set; }
+        public bool Added { get; set; }
+        public int Quantity { get; set; }
     }
 }

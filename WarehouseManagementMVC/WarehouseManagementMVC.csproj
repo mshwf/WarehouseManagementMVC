@@ -206,7 +206,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BranchController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
@@ -246,6 +245,10 @@
     <Compile Include="Migrations\201611171626157_catsAdded.cs" />
     <Compile Include="Migrations\201611171626157_catsAdded.Designer.cs">
       <DependentUpon>201611171626157_catsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611180154129_omitItemBranch.cs" />
+    <Compile Include="Migrations\201611180154129_omitItemBranch.Designer.cs">
+      <DependentUpon>201611180154129_omitItemBranch.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -308,9 +311,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -380,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611171626157_catsAdded.resx">
       <DependentUpon>201611171626157_catsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611180154129_omitItemBranch.resx">
+      <DependentUpon>201611180154129_omitItemBranch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

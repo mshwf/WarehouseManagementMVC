@@ -9,7 +9,6 @@ namespace WarehouseManagementMVC.ViewModels
     public class WarehouseData
     {
         public IEnumerable<Item> Items { get; set; }
-        public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<Branch> Branches { get; set; }
     }
 }

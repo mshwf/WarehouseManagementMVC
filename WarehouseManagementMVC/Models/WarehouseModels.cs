@@ -33,7 +33,7 @@ namespace WarehouseManagementMVC.Models
         [Required]
         public decimal Price { get; set; }
 
-        [Range(0, 100), Display(Name = "Discount Percentage"), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Enter only numeric number")]
+        [Range(0, 100), Display(Name = "Discount Percentage"), RegularExpression(@"^(\d{0,2}(\.\d{1,2})?|100(\.00?)?)$", ErrorMessage = "Enter only numeric number")]
         public double? DiscountPercentage { get; set; } = 0;
 
         public ICollection<Category> Categories { get; set; }

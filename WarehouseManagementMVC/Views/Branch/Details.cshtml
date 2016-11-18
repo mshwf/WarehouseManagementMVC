@@ -18,27 +18,28 @@
             <th>Discount</th>
         </tr>
         @{
-            if (Model.BItems == null)
+            if (Model.Items == null)
             {
                 <tr>
-                 
-                        Currently no items added.
-                        <a href="@Url.Action("AddBranchItems", "Branch", routeValues:new {id=Model.Id })" class="btn btn-default">
-                            Add
-                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                        </a>
+                 <div style="margin:8px">
+                     Currently no items added. <a href="@Url.Action("AddBranchItems", "Branch", routeValues:new {id=Model.Id })" class="btn btn-default">
+                         Add
+                         <span class="glyphicon glyphicon-plus-sign"></span>
+                     </a>
+                 </div>
+                        
                     
                 </tr>
 
             }
             else
             {
-                foreach (var item in Model.BItems)
+                foreach (var item in Model.Items)
                 {
                     <tr>
-                        <td>@item.Item.Name</td>
-                        <td>@item.Item.Price</td>
-                        <td>@item.Item.Quantity</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.Quantity</td>
                         <td>@item.DiscountPercentage</td>
                     </tr>
                 }

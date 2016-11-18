@@ -22,20 +22,24 @@ namespace WarehouseManagementMVC.Controllers
             var items = db.Items.Include(c => c.Categories);
             warhouse.Branches = db.Branches;
             ViewBag.Search = search;
+            ViewBag.QSort = sort == "q_asc" ? "q_desc" : "q_asc";
+            ViewBag.NSort = sort == "n_asc" ? "n_desc" : "n_asc";
+
             switch (sort)
             {
                 case "q_asc":
                     items = items.OrderBy(i => i.Quantity);
-                    ViewBag.Sort = "q_desc";
                     break;
                 case "q_desc":
                     items = items.OrderByDescending(i => i.Quantity);
-                    ViewBag.Sort = "q_asc";
+                    break;
+                case "n_asc":
+                    items = items.OrderBy(i => i.Name);
                     break;
                 default:
-                    items = items.OrderBy(i => i.Quantity);
-                    ViewBag.Sort = "q_desc";
+                    items = items.OrderByDescending(i => i.Name);
                     break;
+
             }
 
             if (!string.IsNullOrEmpty(search))

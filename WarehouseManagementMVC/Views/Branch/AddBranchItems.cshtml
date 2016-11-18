@@ -3,22 +3,31 @@
     ViewBag.Title = "AddBranchItem";
 }
 
-<h2>Add Branch Item</h2>
+<h2>Add Items | @Model.Location</h2>
 @using (Html.BeginForm())
 {
-<table class="table table-bordered">
-    <tr>
-        <th>Item</th>
-        <th>Quantity</th>
-    </tr>
-    @{List<WarehouseManagementMVC.ViewModels.BranchItems> itemsIn = ViewBag.ItemsInBranch;}
-    @foreach (var item in itemsIn)
-    {
+    @Html.AntiForgeryToken()
+    <table class="table table-bordered">
         <tr>
-            <td><input type="checkbox" name="selectedItems" value="@item.ItemId" @Html.Raw(item.Assigned?"checked":"") /></td>
-            @*<td>@item.Quantity</td>*@
+            <th>Items Available in the warehouse</th>
+            <th>Quantity</th>
         </tr>
+        @{List<WarehouseManagementMVC.Models.Item> itemsIn = ViewBag.ItemsInBranch;}
+        @foreach (var item in itemsIn)
+        {
+            <tr>
+                <td onclick="">
+                    <input type="checkbox" onclick="document.getElementById('@item.Id').disabled = this.checked?false:true;" name="selectedItems" value="@item.Id"/> @item.Name
+                </td>
+                <td>
+                    <input disabled="disabled" type="number" pattern="[0-9]" id="@item.Id" class="form-control" style="display:inline-block; width:80px" name="qty" value="" /> <mark>@item.Quantity Maximum</mark>
+                </td>
+            </tr>
         }
-</table>
-
-}
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+            }

@@ -15,39 +15,39 @@ namespace WarehouseManagementMVC.DAL
 
             var branches = new List<Branch>
             {
-                new Branch { Location="Shubra"},
-                new Branch { Location="Dokki"},
-                new Branch { Location="6th October"},
-                new Branch { Location="5th Settlement"},
-                new Branch { Location="Al-Haram"},
-                new Branch { Location="Mansoura"},
-                new Branch { Location="Alexandria"}
+                new Branch { Location="Shubra", Items=new List<Item>()},
+                new Branch { Location="Dokki", Items=new List<Item>()},
+                new Branch { Location="6th October", Items=new List<Item>()},
+                new Branch { Location="5th Settlement", Items=new List<Item>()},
+                new Branch { Location="Al-Haram", Items=new List<Item>()},
+                new Branch { Location="Mansoura", Items=new List<Item>()},
+                new Branch { Location="Alexandria", Items=new List<Item>()}
             };
             branches.ForEach(b => context.Branches.Add(b));
             context.SaveChanges();
             var items = new List<Item>
             {
-                new Item { Name="Lenovo E200",  Price=1500, Quantity=200, Categories=new List<Category>()},
-                new Item { Name="Dell T101",  Price=1200, Quantity=100 , Categories=new List<Category>()},
-                new Item { Name="Galaxy S7", Price=7500, Quantity=300 , Categories=new List<Category>()},
-                new Item { Name="Galaxy Note 5", Price=6000, Quantity=120 , Categories=new List<Category>()},
-                new Item { Name="HTC Desire 860", Price=2800, Quantity=40, Categories=new List<Category>() },
-                new Item { Name="LG Nexus 6",  Price=1500, Quantity=12, Categories=new List<Category>() },
-                new Item { Name="Nokia 200", Price=1500, Quantity=700, Categories=new List<Category>() },
-                new Item { Name="Nokia 105",  Price=1500, Quantity=1005, Categories=new List<Category>() },
-                new Item { Name="Lumia 925",   Price=1500, Quantity=660, Categories=new List<Category>() },
-                new Item { Name="Google Pixel",  Price=1500, Quantity=120, Categories=new List<Category>() },
-                new Item { Name="Google Pixel XL", Price=1500, Quantity=100, Categories=new List<Category>() },
-                new Item { Name="iPhone 7", Price=1500, Quantity=100, Categories=new List<Category>() },
-                new Item { Name="iPhone 5", Price=1500, Quantity=14, Categories=new List<Category>() },
-                new Item { Name="Galaxy J5",  Price=1500, Quantity=590, Categories=new List<Category>() },
-                new Item { Name="Asha 500",  Price=1500, Quantity=500, Categories=new List<Category>() },
-                new Item { Name="Asha 250", Price=1500, Quantity=630, Categories=new List<Category>() },
-                new Item { Name="Nokia 320",  Price=1500, Quantity=175, Categories=new List<Category>() },
-                new Item { Name="Lumia 825",  Price=1500, Quantity=880, Categories=new List<Category>() },
-                new Item { Name="Huawei Mate 9 Pro",Price=1500, Quantity=15, Categories=new List<Category>() },
-                new Item { Name="iPad Air",   Price=1500, Quantity=10, Categories=new List<Category>() },
-                new Item { Name="Galaxy Tab S2", Price=1500, Quantity=115, Categories=new List<Category>() }
+                new Item { Name="Lenovo E200", Price=1500, Quantity=200, DiscountPercentage=4, Categories=new List<Category>()},
+                new Item { Name="Dell T101", Price=1200, Quantity=100, DiscountPercentage=0, Categories=new List<Category>()},
+                new Item { Name="Galaxy S7", Price=7500, Quantity=300, DiscountPercentage=5, Categories=new List<Category>()},
+                new Item { Name="Galaxy Note 5", Price=6000, Quantity=120, DiscountPercentage=20, Categories=new List<Category>()},
+                new Item { Name="HTC Desire 860", Price=2800, Quantity=40, DiscountPercentage=0, Categories=new List<Category>()},
+                new Item { Name="LG Nexus 6", Price=1500, Quantity=12, DiscountPercentage=2, Categories=new List<Category>()},
+                new Item { Name="Nokia 200", Price=1500, Quantity=700, DiscountPercentage=0, Categories=new List<Category>()},
+                new Item { Name="Nokia 105", Price=1500, Quantity=1005, DiscountPercentage=0, Categories=new List<Category>()},
+                new Item { Name="Lumia 925", Price=1500, Quantity=660, DiscountPercentage=10, Categories=new List<Category>()},
+                new Item { Name="Google Pixel", Price=1500, Quantity=120, DiscountPercentage=10, Categories=new List<Category>()},
+                new Item { Name="Google Pixel XL", Price=1500, Quantity=100, DiscountPercentage=0, Categories=new List<Category>()},
+                new Item { Name="iPhone 7", Price=1500, Quantity=100, DiscountPercentage=0, Categories=new List<Category>()},
+                new Item { Name="iPhone 5", Price=1500, Quantity=14, DiscountPercentage=15, Categories=new List<Category>()},
+                new Item { Name="Galaxy J5", Price=1500, Quantity=590, DiscountPercentage=8, Categories=new List<Category>()},
+                new Item { Name="Asha 500", Price=1500, Quantity=500, DiscountPercentage=50, Categories=new List<Category>()},
+                new Item { Name="Asha 250", Price=1500, Quantity=630, DiscountPercentage=20, Categories=new List<Category>()},
+                new Item { Name="Nokia 320", Price=1500, Quantity=175, DiscountPercentage=8, Categories=new List<Category>()},
+                new Item { Name="Lumia 825", Price=1500, Quantity=880, DiscountPercentage=25, Categories=new List<Category>()},
+                new Item { Name="Huawei Mate 9 Pro", Price=1500, Quantity=15, DiscountPercentage=0, Categories=new List<Category>()},
+                new Item { Name="iPad Air", Price=1500, Quantity=10, DiscountPercentage=3, Categories=new List<Category>()},
+                new Item { Name="Galaxy Tab S2", Price=1500, Quantity=115, DiscountPercentage=2, Categories=new List<Category>()}
             };
             items.ForEach(i => context.Items.Add(i));
             context.SaveChanges();
