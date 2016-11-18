@@ -14,9 +14,14 @@ namespace WarehouseManagementMVC.Models
     }
     public class Branch
     {
+
         public int Id { get; set; }
         public string Location { get; set; }
         public ICollection<Item> Items { get; set; }
+        public Branch()
+        {
+            Items = new List<Item>();
+        }
     }
    
     public class Item

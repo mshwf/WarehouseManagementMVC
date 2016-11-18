@@ -29,7 +29,7 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Branch branch = db.Branches.Find(id);
+            Branch branch = db.Branches.Include(b => b.Items).First(i => i.Id == id);
             if (branch == null)
             {
                 return HttpNotFound();
@@ -53,36 +53,39 @@ namespace WarehouseManagementMVC.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddBranchItems(int? id, string[] selectedItems)
+        public ActionResult AddBranchItems(int? id, string[] selectedItems, int qty)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var branchToUpdate = db.Branches.Include(i => i.Items).Where(d => d.Id == id).Single();
-            UpdateBranchItems(branchToUpdate, selectedItems);
+            UpdateBranchItems(branchToUpdate, selectedItems, qty);
             return RedirectToAction("Details", new { id = id });
         }
 
-        private void UpdateBranchItems(Branch branchToUpdate, string[] selectedItems)
+        private void UpdateBranchItems(Branch branchToUpdate, string[] selectedItems, int qty)
         {
             if (selectedItems == null)
             {
                 branchToUpdate.Items = new List<Item>();
                 return;
             }
-            var selectedItemsHS = new HashSet<string>(selectedItems);
-            var branchItems = new HashSet<int>(branchToUpdate.Items.Select(i => i.Id));
-            foreach (var item in db.Items)
-            {
-                if (selectedItemsHS.Contains(item.Id.ToString()))
-                {
-                    if (!branchItems.Contains(item.Id))
-                    {
-                        branchToUpdate.Items.Add(item);
-                    }
-                }
 
+            foreach (var item_id in selectedItems)
+            {
+                int itemId = int.Parse(item_id);
+                var item = db.Items.Find(itemId);
+                if (branchToUpdate.Items.Select(i => i.Id == itemId).SingleOrDefault())
+                {
+                    branchToUpdate.Items.Where(i => i.Id == itemId).Single().Quantity += qty;
+                }
+                else
+                {
+                    //branchToUpdate.Items.Add();db.Items.Where(i => i.Id == itemId).Single().Name
+                    branchToUpdate.Items.Add(item);
+                    db.SaveChanges();
+                }
             }
         }
 

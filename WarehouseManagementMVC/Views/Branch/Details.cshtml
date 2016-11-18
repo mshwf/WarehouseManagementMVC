@@ -18,7 +18,7 @@
             <th>Discount</th>
         </tr>
         @{
-            if (Model.Items == null)
+            if (Model.Items.Count == 0)
             {
                 <tr>
                  <div style="margin:8px">
