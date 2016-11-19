@@ -84,7 +84,6 @@ namespace WarehouseManagementMVC.Controllers
                 else
                 {
                     branchToUpdate.Items.Add(new BItem { Name = witem.Name, Categories = witem.Categories, Price = witem.Price, Quantity = qty[j] });
-                    db.SaveChanges();
                 }
                 witem.Quantity -= qty[j];
                 db.Entry(witem).State = EntityState.Modified;
