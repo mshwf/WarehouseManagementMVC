@@ -8,12 +8,13 @@
 {
 
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <table class="table table-bordered">
         <tr>
             <th>Items Available in the warehouse</th>
             <th>Quantity</th>
         </tr>
-        @{List<WarehouseManagementMVC.Models.WItem> itemsIn = ViewBag.ItemsInBranch;}
+        @{List<WarehouseManagementMVC.Models.WItem> itemsIn = ViewBag.WrsItems;}
         @foreach (var item in itemsIn)
         {
             <tr>

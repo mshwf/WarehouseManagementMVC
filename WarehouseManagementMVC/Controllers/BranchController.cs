@@ -48,7 +48,7 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ItemsInBranch = db.WItems.Where(i => i.Quantity > 0).ToList();
+            ViewBag.WrsItems = db.WItems.Where(i => i.Quantity > 0).ToList();
             return View(branch);
         }
         [HttpPost]
@@ -75,6 +75,10 @@ namespace WarehouseManagementMVC.Controllers
             {
                 int itemId = int.Parse(item_id);
                 var witem = db.WItems.Include(c => c.Categories).FirstOrDefault(w => w.Id == itemId);
+                if (qty[j] > witem.Quantity)
+                {
+                    ModelState.AddModelError("", $"This amount not available, only {witem.Quantity}");
+                }
                 if (branchToUpdate.Items.Any(i => i.Name == witem.Name))
                 {
                     var bitem = branchToUpdate.Items.Where(i => i.Name == witem.Name).FirstOrDefault();
