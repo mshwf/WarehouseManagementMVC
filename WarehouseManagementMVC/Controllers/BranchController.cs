@@ -48,7 +48,7 @@ namespace WarehouseManagementMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ItemsInBranch = db.WItems.ToList();
+            ViewBag.ItemsInBranch = db.WItems.Where(i => i.Quantity > 0).ToList();
             return View(branch);
         }
         [HttpPost]
@@ -77,18 +77,18 @@ namespace WarehouseManagementMVC.Controllers
                 var witem = db.WItems.Include(c => c.Categories).FirstOrDefault(w => w.Id == itemId);
                 if (branchToUpdate.Items.Any(i => i.Name == witem.Name))
                 {
-                    var b = branchToUpdate.Items.Where(i => i.Name == witem.Name).FirstOrDefault();
-                    b.Quantity += qty[j];
-                    witem.Quantity -= qty[j];
-                    db.Entry(b).State = EntityState.Modified;
-                    db.Entry(witem).State = EntityState.Modified;
-                    db.SaveChanges();
+                    var bitem = branchToUpdate.Items.Where(i => i.Name == witem.Name).FirstOrDefault();
+                    bitem.Quantity += qty[j];
+                    db.Entry(bitem).State = EntityState.Modified;
                 }
                 else
                 {
                     branchToUpdate.Items.Add(new BItem { Name = witem.Name, Categories = witem.Categories, Price = witem.Price, Quantity = qty[j] });
                     db.SaveChanges();
                 }
+                witem.Quantity -= qty[j];
+                db.Entry(witem).State = EntityState.Modified;
+                db.SaveChanges();
                 j++;
             }
         }
