@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Item</h4>
         <hr />
@@ -38,7 +38,18 @@
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            <div>
+                @{
+                    List<WarehouseManagementMVC.ViewModels.AssignedCategories> categories = ViewBag.Categories;
+                    foreach (var cat in categories)
+                    {
+                        <input type="checkbox" name="name" value=""@(Html.Raw(cat.Assigned?"checked=\"checked\"":""))/> @cat.Name
+                    }
+                }
+               
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

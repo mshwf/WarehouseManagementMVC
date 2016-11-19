@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseManagementMVC.DAL;
 using WarehouseManagementMVC.Models;
+using WarehouseManagementMVC.ViewModels;
 
 namespace WarehouseManagementMVC.Controllers
 {
@@ -39,7 +40,27 @@ namespace WarehouseManagementMVC.Controllers
         // GET: Item/Create
         public ActionResult Create()
         {
+            var item = new WItem();
+            var categories = new List<Category>();
+            PopulateCategories(item);
             return View();
+        }
+
+        private void PopulateCategories(WItem item)
+        {
+            var allCategories = db.Categories;
+            var itemCategories = new HashSet<int>(item.Categories.Select(c => c.Id));
+            var categoryData = new List<AssignedCategories>();
+            foreach (var cat in allCategories)
+            {
+                categoryData.Add(new AssignedCategories
+                {
+                    CategoryID = cat.Id,
+                    Name = cat.Name,
+                    Assigned = itemCategories.Contains(cat.Id)
+                });
+            }
+            ViewBag.Categories = categoryData;
         }
 
         // POST: Item/Create

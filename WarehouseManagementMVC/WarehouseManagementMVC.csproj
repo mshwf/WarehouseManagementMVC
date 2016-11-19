@@ -273,6 +273,7 @@
     <Compile Include="Models\WarehouseModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AssignedCategories.cs" />
     <Compile Include="ViewModels\WarehouseVM.cs" />
   </ItemGroup>
   <ItemGroup>
