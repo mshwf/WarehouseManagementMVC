@@ -75,11 +75,9 @@ namespace WarehouseManagementMVC.Controllers
             {
                 int itemId = int.Parse(item_id);
                 var witem = db.WItems.Include(c => c.Categories).FirstOrDefault(w => w.Id == itemId);
-                var iName = witem.Name;
-                var bitem = db.BItems.FirstOrDefault(d => d.Id == itemId);
-                if (witem.Name == "Dell T101")
+                if (branchToUpdate.Items.Any(i => i.Name == witem.Name))
                 {
-                    var b = branchToUpdate.Items.Where(i => i.Name == iName).FirstOrDefault();
+                    var b = branchToUpdate.Items.Where(i => i.Name == witem.Name).FirstOrDefault();
                     b.Quantity += qty[j];
                     witem.Quantity -= qty[j];
                     db.Entry(b).State = EntityState.Modified;
