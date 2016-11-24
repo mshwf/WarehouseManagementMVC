@@ -19,7 +19,7 @@ namespace WarehouseManagementMVC.Controllers
         // GET: Item
         public ActionResult Index()
         {
-            return View(db.WItems.ToList());
+            return View(db.WItems.Where(s => !(s is BItem)));
         }
 
         // GET: Item/Details/5

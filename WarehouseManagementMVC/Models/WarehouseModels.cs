@@ -40,6 +40,7 @@ namespace WarehouseManagementMVC.Models
         public decimal Price { get; set; }
         public ICollection<Category> Categories { get; set; }
     }
+    [Table("BItems")]
     public class BItem : WItem //Branch Item
     {
         [Range(0, 100), Display(Name = "Discount Percentage"), RegularExpression(@"^(\d{0,2}(\.\d{1,2})?|100(\.00?)?)$", ErrorMessage = "Enter only numeric number")]

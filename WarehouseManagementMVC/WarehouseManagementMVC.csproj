@@ -48,8 +48,8 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.5\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -214,59 +214,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611161247189_InitialCreate.cs" />
-    <Compile Include="Migrations\201611161247189_InitialCreate.Designer.cs">
-      <DependentUpon>201611161247189_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611161542410_FirstMig.cs" />
-    <Compile Include="Migrations\201611161542410_FirstMig.Designer.cs">
-      <DependentUpon>201611161542410_FirstMig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611161547134_wrhsMig.cs" />
-    <Compile Include="Migrations\201611161547134_wrhsMig.Designer.cs">
-      <DependentUpon>201611161547134_wrhsMig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611161853234_modifiedMdl.cs" />
-    <Compile Include="Migrations\201611161853234_modifiedMdl.Designer.cs">
-      <DependentUpon>201611161853234_modifiedMdl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611162058447_wrhsRestored.cs" />
-    <Compile Include="Migrations\201611162058447_wrhsRestored.Designer.cs">
-      <DependentUpon>201611162058447_wrhsRestored.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611162215055_initMig.cs" />
-    <Compile Include="Migrations\201611162215055_initMig.Designer.cs">
-      <DependentUpon>201611162215055_initMig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611170933072_newPropBI.cs" />
-    <Compile Include="Migrations\201611170933072_newPropBI.Designer.cs">
-      <DependentUpon>201611170933072_newPropBI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611171626157_catsAdded.cs" />
-    <Compile Include="Migrations\201611171626157_catsAdded.Designer.cs">
-      <DependentUpon>201611171626157_catsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611180154129_omitItemBranch.cs" />
-    <Compile Include="Migrations\201611180154129_omitItemBranch.Designer.cs">
-      <DependentUpon>201611180154129_omitItemBranch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611181628104_BItemAdded.cs" />
-    <Compile Include="Migrations\201611181628104_BItemAdded.Designer.cs">
-      <DependentUpon>201611181628104_BItemAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611181655183_InheritanceImplemented.cs" />
-    <Compile Include="Migrations\201611181655183_InheritanceImplemented.Designer.cs">
-      <DependentUpon>201611181655183_InheritanceImplemented.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611182235127_fxkeys.cs" />
-    <Compile Include="Migrations\201611182235127_fxkeys.Designer.cs">
-      <DependentUpon>201611182235127_fxkeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611182251320_moveOrdrsProp.cs" />
-    <Compile Include="Migrations\201611182251320_moveOrdrsProp.Designer.cs">
-      <DependentUpon>201611182251320_moveOrdrsProp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -372,47 +319,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611161247189_InitialCreate.resx">
-      <DependentUpon>201611161247189_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611161542410_FirstMig.resx">
-      <DependentUpon>201611161542410_FirstMig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611161547134_wrhsMig.resx">
-      <DependentUpon>201611161547134_wrhsMig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611161853234_modifiedMdl.resx">
-      <DependentUpon>201611161853234_modifiedMdl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611162058447_wrhsRestored.resx">
-      <DependentUpon>201611162058447_wrhsRestored.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611162215055_initMig.resx">
-      <DependentUpon>201611162215055_initMig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611170933072_newPropBI.resx">
-      <DependentUpon>201611170933072_newPropBI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611171626157_catsAdded.resx">
-      <DependentUpon>201611171626157_catsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611180154129_omitItemBranch.resx">
-      <DependentUpon>201611180154129_omitItemBranch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611181628104_BItemAdded.resx">
-      <DependentUpon>201611181628104_BItemAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611181655183_InheritanceImplemented.resx">
-      <DependentUpon>201611181655183_InheritanceImplemented.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611182235127_fxkeys.resx">
-      <DependentUpon>201611182235127_fxkeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611182251320_moveOrdrsProp.resx">
-      <DependentUpon>201611182251320_moveOrdrsProp.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -36,3 +36,6 @@ textarea {
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
+.notExist{
+    text-decoration:line-through;
+}

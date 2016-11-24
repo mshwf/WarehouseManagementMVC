@@ -71,17 +71,18 @@ namespace WarehouseManagementMVC.Controllers
                 return;
             }
             int j = 0;
-            foreach (var item_id in selectedItems)
+            foreach (var itemName in selectedItems)
             {
-                int itemId = int.Parse(item_id);
-                var witem = db.WItems.Include(c => c.Categories).FirstOrDefault(w => w.Id == itemId);
+                //int itemId = int.Parse(item_id);
+                var witem = db.WItems.Include(c => c.Categories).OfType<WItem>().FirstOrDefault(w => w.Name == itemName);
                 if (qty[j] > witem.Quantity)
                 {
                     ModelState.AddModelError("", $"This amount not available, only {witem.Quantity}");
+                    return;
                 }
                 if (branchToUpdate.Items.Any(i => i.Name == witem.Name))
                 {
-                    var bitem = branchToUpdate.Items.Where(i => i.Name == witem.Name).FirstOrDefault();
+                    var bitem = branchToUpdate.Items.Where(i => i.Name == witem.Name).OfType<BItem>().FirstOrDefault();
                     bitem.Quantity += qty[j];
                     db.Entry(bitem).State = EntityState.Modified;
                 }
@@ -90,7 +91,9 @@ namespace WarehouseManagementMVC.Controllers
                     branchToUpdate.Items.Add(new BItem { Name = witem.Name, Categories = witem.Categories, Price = witem.Price, Quantity = qty[j] });
                 }
                 witem.Quantity -= qty[j];
-                db.Entry(witem).State = EntityState.Modified;
+                db.WItems.Attach(witem);
+                db.Entry(witem).Property(q => q.Quantity).IsModified = true;
+                //db.Entry(witem).State = EntityState.Modified;
                 db.SaveChanges();
                 j++;
             }

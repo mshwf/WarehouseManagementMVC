@@ -19,7 +19,7 @@
         {
             <tr>
                 <td>
-                    <input type="checkbox" onclick="document.getElementById('@item.Id').disabled = this.checked?false:true;" name="selectedItems" value="@item.Id" /> @item.Name
+                    <input type="checkbox" onclick="document.getElementById('@item.Id').disabled = this.checked?false:true;" name="selectedItems" value="@item.Name" id="chk_@item.Id" /> <label for="chk_@item.Id">@item.Name</label>
                 </td>
                 <td>
                     <input disabled="disabled" type="number" id="@item.Id" class="form-control" style="display:inline-block; width:80px" name="qty" value="" /> <mark>@item.Quantity Maximum</mark>
